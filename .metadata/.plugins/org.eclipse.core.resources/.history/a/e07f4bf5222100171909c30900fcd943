@@ -1,0 +1,15 @@
+
+public class DocumentBuilder {
+	private static DocumentBuilder docBuilder;
+	
+	private DocumentBuilder(){
+		
+	}
+	
+	public static DocumentBuilder getInstance(){
+		if(docBuilder == null){
+			docBuilder = new DocumentBuilder();
+		}
+		return docBuilder;
+	}
+}

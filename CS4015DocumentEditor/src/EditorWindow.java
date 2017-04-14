@@ -1,8 +1,17 @@
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 
-public class EditorWindow extends JFrame implements ActionListener{
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+public class EditorWindow extends JFrame implements ActionListener, DocumentListener{
 	private JTextArea ta;
 	private int count;
 	private JMenuBar menuBar;
@@ -11,6 +20,7 @@ public class EditorWindow extends JFrame implements ActionListener{
 	private JMenuItem exitI,cutI,copyI,pasteI,selectI,saveI,loadI,statusI;
 	private String pad;
 	private JToolBar toolBar;
+	private JFileChooser fileChooser;
 	
 	public EditorWindow(){
 	    super("Document");
@@ -23,6 +33,7 @@ public class EditorWindow extends JFrame implements ActionListener{
 	    count = 0;
 	    pad = " ";
 	    ta = new JTextArea();
+	    ta.getDocument().addDocumentListener(this);
 	    menuBar = new JMenuBar();
 	    fileM = new JMenu("File");
 	    editM = new JMenu("Edit");
@@ -37,6 +48,7 @@ public class EditorWindow extends JFrame implements ActionListener{
 	    loadI = new JMenuItem("Load");
 	    statusI = new JMenuItem("Status");
 	    toolBar = new JToolBar();
+	    fileChooser = new JFileChooser();
 	
 	    ta.setLineWrap(true);
 	    ta.setWrapStyleWord(true);
@@ -77,6 +89,26 @@ public class EditorWindow extends JFrame implements ActionListener{
 	    if (choice == saveI){
 	        //not yet implmented
 	    }
+	    else if(choice == loadI){
+	    	int returnVal = fileChooser.showOpenDialog(ta);
+	    	if(returnVal == JFileChooser.APPROVE_OPTION){
+	    		File file = fileChooser.getSelectedFile();
+	    		FileReader fr;
+				try {
+					fr = new FileReader(file);
+					BufferedReader reader = new BufferedReader(fr);
+					ta.read(reader, ta);
+
+				} catch (FileNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+	    	}
+	    }
 	    else if (choice == exitI)
 	        System.exit(0);
 	    else if (choice == cutI){
@@ -96,5 +128,23 @@ public class EditorWindow extends JFrame implements ActionListener{
 
 	public static void main(String[] args){
 	    new EditorWindow();
+	}
+
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

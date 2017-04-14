@@ -1,0 +1,8 @@
+
+public class DocumentBuilder {
+	private DocumentBuilder docBuilder;
+	
+	public static DocumentBuilder(){
+		
+	}
+}

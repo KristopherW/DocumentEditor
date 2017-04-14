@@ -1,0 +1,22 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+
+public class Director {
+	private DocumentBuilder docBuilder;
+	
+	public void buildDocument(String s){
+		String textIn = s;
+		
+		try{
+			
+			while(scan.hasNext()){
+				String input = scan.next();
+				
+				docBuilder.buildDoc();
+			}
+		}
+		catch(FileNotFoundException e){
+			e.printStackTrace();
+		}
+	}
+}

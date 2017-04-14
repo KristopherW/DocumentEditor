@@ -1,0 +1,28 @@
+import java.util.List;
+
+/**
+ * 
+ */
+
+/** 
+ * <!-- begin-UML-doc -->
+ * <!-- end-UML-doc -->
+ * @author kwilmot
+ * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+ */
+public class PriorityQueue extends Queue {
+	
+	public PriorityQueue(List givenImp) {
+		super(givenImp);
+	}
+
+	/** 
+	 * (non-Javadoc)
+	 * @see Queue#enqueue(int value)
+	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void enqueue(int value) {
+		super.imp.add(value);
+		super.imp.sort(null);
+	}
+}

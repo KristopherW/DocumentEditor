@@ -1,0 +1,4 @@
+
+public class FlyweightCharFactory{
+	private Hashmap<char, Character> flyweightPool = new Hashmap<>();
+}

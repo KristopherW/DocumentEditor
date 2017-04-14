@@ -1,0 +1,12 @@
+import java.util.HashMap;
+
+public class FlyweightCharFactory{
+	private HashMap<Character, DocumentCharacter> flyweightPool = new HashMap<>();
+	
+	public DocumentCharacter getFlyweightChar(char key){
+		if(!flyweightPool.containsKey(key)){
+			flyweightPool.put(key, new DocumentCharacter(key));
+		}
+		return flyweightPool.get(key);
+	}
+}

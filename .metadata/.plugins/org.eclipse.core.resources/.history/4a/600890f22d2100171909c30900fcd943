@@ -1,0 +1,5 @@
+import java.util.HashMap;
+
+public class FlyweightCharFactory{
+	private HashMap<Character, Character> flyweightPool = new HashMap<>();
+}

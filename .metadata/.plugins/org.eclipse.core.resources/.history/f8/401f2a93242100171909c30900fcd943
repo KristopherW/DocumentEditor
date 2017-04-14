@@ -1,0 +1,4 @@
+
+public class TestComposite {
+	private ArrayList<TextComponent> childrenList = new ArrayList();
+}

@@ -1,0 +1,12 @@
+
+public class DocumentRow extends TextComponent{
+	private String row;
+	
+	public DocumentRow(String s){
+		row = s;
+	}
+	
+	public void printValue(){
+		System.out.print(row);
+	}
+}

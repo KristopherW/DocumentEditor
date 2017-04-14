@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+
+public class ArrayListAdapter<T> implements List{
+	private ArrayList<T> arrayList = new ArrayList<>();
+		
+	@Override
+	public int count() {
+		return arrayList.size();
+	}
+
+	@Override
+	public T getAt(int index) {
+		return arrayList.get(index);
+	}
+
+	@Override
+	public T first() {
+		return arrayList.get(0);
+	}
+
+	@Override
+	public T last() {
+		return arrayList.get(arrayList.size()-1);
+	}
+
+	@Override
+	public boolean include(Object x) {
+		boolean isIncluded = false;
+		if(arrayList.contains(x)){
+			isIncluded = true;
+		}
+		return isIncluded;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void append(Object x) {
+		arrayList.add((T) x);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void prepend(Object x) {
+		arrayList.add(0, (T) x);
+	}
+
+	@Override
+	public void delete(Object x) {
+		arrayList.remove(x);
+	}
+
+	@Override
+	public void deleteFirst() {
+		arrayList.remove(0);
+	}
+
+	@Override
+	public void deleteAll() {
+		arrayList.clear();
+	}
+a
+	@SuppressWarnings("unchecked")
+	@Override
+	public void replace(int index, Object x) {
+		arrayList.remove(index);
+		arrayList.add(index, (T) x);
+	}
+
+}

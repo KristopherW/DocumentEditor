@@ -1,0 +1,70 @@
+import java.util.List;
+
+/**
+ * 
+ */
+
+/** 
+ * <!-- begin-UML-doc -->
+ * <!-- end-UML-doc -->
+ * @author kwilmot
+ * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+ */
+public abstract class Queue {
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	protected List imp;
+
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <p><span style="font-size:18pt;">return imp.get(0);</span></p>
+	 * <!-- end-UML-doc -->
+	 * @return
+	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public int head() {
+		return (int) imp.get(0);
+	}
+
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @param value
+	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public abstract void enqueue(int value);
+
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <p><span style="font-size:18pt;">imp.remove(0);</span></p>
+	 * <!-- end-UML-doc -->
+	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void dequeue() {
+		imp.remove(0);
+	}
+
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <p>imp.isEmpty();</p>
+	 * <!-- end-UML-doc -->
+	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public boolean isEmpty() {
+		return imp.isEmpty();
+	}
+
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <p>this.imp = givenImp;</p>
+	 * <!-- end-UML-doc -->
+	 * @param givenImp
+	 * @generated "UML to Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public Queue(List givenImp) {
+		this.imp = givenImp;
+	}
+}
