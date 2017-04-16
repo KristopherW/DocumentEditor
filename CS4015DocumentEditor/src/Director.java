@@ -8,8 +8,14 @@ public class Director {
 		char[] charArr = s.toCharArray();
 		
 		for(char c : charArr){
-			if(c)
+			if(c == 'g'){
+				
+			}
 		}
 
+	}
+	
+	public Director(DocumentBuilder builder){
+		this.docBuilder = builder;
 	}
 }

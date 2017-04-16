@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -12,8 +13,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class EditorWindow extends JFrame implements ActionListener, DocumentListener{
-	private JTextArea ta;
-	private int count;
+	private JTextArea textArea;
 	private JMenuBar menuBar;
 	private JMenu fileM,editM,viewM;
 	private JScrollPane scpane;
@@ -30,15 +30,14 @@ public class EditorWindow extends JFrame implements ActionListener, DocumentList
 	    Container pane = getContentPane();
 	    pane.setLayout(new BorderLayout());
 	
-	    count = 0;
 	    pad = " ";
-	    ta = new JTextArea();
-	    ta.getDocument().addDocumentListener(this);
+	    textArea = new JTextArea();
+	    textArea.getDocument().addDocumentListener(this);
 	    menuBar = new JMenuBar();
 	    fileM = new JMenu("File");
 	    editM = new JMenu("Edit");
 	    viewM = new JMenu("View");
-	    scpane = new JScrollPane(ta);
+	    scpane = new JScrollPane(textArea);
 	    exitI = new JMenuItem("Exit");
 	    cutI = new JMenuItem("Cut");
 	    copyI = new JMenuItem("Copy");
@@ -50,8 +49,8 @@ public class EditorWindow extends JFrame implements ActionListener, DocumentList
 	    toolBar = new JToolBar();
 	    fileChooser = new JFileChooser();
 	
-	    ta.setLineWrap(true);
-	    ta.setWrapStyleWord(true);
+	    textArea.setLineWrap(true);
+	    textArea.setWrapStyleWord(true);
 	
 	    setJMenuBar(menuBar);
 	    menuBar.add(fileM);
@@ -86,43 +85,58 @@ public class EditorWindow extends JFrame implements ActionListener, DocumentList
 	
 	public void actionPerformed(ActionEvent e){
 	    JMenuItem choice = (JMenuItem) e.getSource();
+	    File file = null;
 	    if (choice == saveI){
-	        //not yet implmented
+	    	if(file == null){
+	    		JFileChooser c = new JFileChooser();
+	    	      int returnVal = c.showSaveDialog(textArea);
+	    	      if (returnVal == JFileChooser.APPROVE_OPTION) {
+	    	    	  file = c.getSelectedFile();
+	    	      }
+	    	}
+	    	
+	    	try {
+				FileWriter fileWriter = new FileWriter(file.getAbsoluteFile(), false);
+				fileWriter.write(textArea.getText());
+				fileWriter.close();
+			} 
+	    	catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	    }
 	    else if(choice == loadI){
-	    	int returnVal = fileChooser.showOpenDialog(ta);
+	    	int returnVal = fileChooser.showOpenDialog(textArea);
 	    	if(returnVal == JFileChooser.APPROVE_OPTION){
-	    		File file = fileChooser.getSelectedFile();
+	    		file = fileChooser.getSelectedFile();
 	    		FileReader fr;
 				try {
 					fr = new FileReader(file);
 					BufferedReader reader = new BufferedReader(fr);
-					ta.read(reader, ta);
-
-				} catch (FileNotFoundException e2) {
+					textArea.read(reader, textArea);
+				} 
+				catch (FileNotFoundException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
-				} catch (IOException e1) {
+				} 
+				catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
 	    	}
 	    }
-	    else if (choice == exitI)
-	        System.exit(0);
-	    else if (choice == cutI){
-	        pad = ta.getSelectedText();
-	        ta.replaceRange("", ta.getSelectionStart(), ta.getSelectionEnd());
+	    else if (choice == exitI){
+	    	System.exit(0);	    	
 	    }
-	    else if (choice == copyI)
-	        pad = ta.getSelectedText();
-	    else if (choice == pasteI)
-	        ta.insert(pad, ta.getCaretPosition());
-	    else if (choice == selectI)
-	        ta.selectAll();
-	    else if (e.getSource() == statusI){
-	        //not yet implmented
+	    else if (choice == cutI){
+	        pad = textArea.getSelectedText();
+	        textArea.replaceRange("", textArea.getSelectionStart(), textArea.getSelectionEnd());
+	    }
+	    else if (choice == copyI){
+	    	pad = textArea.getSelectedText();	    	
+	    }
+	    else if (choice == pasteI){
+	    	textArea.insert(pad, textArea.getCaretPosition());	    	
 	    }
 	}
 
@@ -133,18 +147,19 @@ public class EditorWindow extends JFrame implements ActionListener, DocumentList
 	@Override
 	public void changedUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Change");
+
 	}
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println("Insert");
 		
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println("Remove");
 		
 	}
 }
