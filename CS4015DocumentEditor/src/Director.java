@@ -1,21 +1,20 @@
 
 public class Director {
-	private DocumentBuilder docBuilder;
+	private DocumentBuilder docBuilder = DocumentBuilder.getInstance();
 	
 	public void buildDocument(String s){
 		String textIn = s;
+		docBuilder.buildDoc();
 		
-		char[] charArr = s.toCharArray();
+		String[] rows = textIn.split(System.getProperty("line.separator"));
 		
-		for(char c : charArr){
-			if(c == 'g'){
-				
+		for(String row : rows){
+			char[] chars = row.toCharArray();
+			for(int i=0; i<chars.length-1; i++){
+				docBuilder.buildRow(chars[i]);
 			}
 		}
-
-	}
-	
-	public Director(DocumentBuilder builder){
-		this.docBuilder = builder;
+		
+		docBuilder.buildDoc();
 	}
 }

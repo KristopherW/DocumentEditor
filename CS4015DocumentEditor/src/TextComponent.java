@@ -5,11 +5,11 @@ public class TextComponent {
 		
 	}
 	
-	public void addChild(int index, TextComponent child){
+	public void addChild(TextComponent child){
 		
 	}
 	
-	public void removeChild(int index){
+	public void removeChild(TextComponent child){
 		
 	}
 	

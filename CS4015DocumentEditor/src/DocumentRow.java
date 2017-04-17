@@ -1,9 +1,9 @@
 
 public class DocumentRow extends TextComponent{
-	private List<DocumentCharacter> row = new ArrayListAdapter();
+	private List<String> row = new ArrayListAdapter();
 	
-	public DocumentRow(DocumentCharacter c){
-		row.append(c);
+	public DocumentRow(String s){
+		row.append(s);
 	}
 	
 	public void printValue(){

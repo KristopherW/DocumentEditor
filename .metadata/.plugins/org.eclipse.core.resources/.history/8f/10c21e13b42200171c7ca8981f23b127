@@ -1,0 +1,29 @@
+
+public class DocumentBuilder {
+	private static DocumentBuilder docBuilder;
+	
+	private DocumentBuilder(){}
+	
+	public static DocumentBuilder getInstance(){
+		if(docBuilder == null){
+			docBuilder = new DocumentBuilder();
+		}
+		return docBuilder;
+	}
+	
+	private TextComponent root = new TextComponent();
+	
+	public void buildDoc(){
+		root.addChild(root.numberOfChildren(), new TextComponent());
+	}
+	
+	public void buildRow(char c){
+		DocumentCharacter character = FlyweightCharFactory.getFlyweightChar(c);
+		TextComponent temp = root.getChild(root.numberOfChildren()-1);
+		temp.addChild(temp.numberOfChildren()-1, character);
+	}
+	
+	public TextComponent getDocument(){
+		return root;
+	}
+}
