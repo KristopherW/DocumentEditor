@@ -2,7 +2,7 @@
 public class Director {
 	private DocumentBuilder docBuilder = DocumentBuilder.getInstance();
 	
-	public void buildDocument(String s){
+	public String buildDocument(String s){
 		String textIn = s;
 		docBuilder.buildDoc();
 		
@@ -16,5 +16,15 @@ public class Director {
 		}
 		
 		docBuilder.buildDoc();
+		
+		List<TextComposite> temp = docBuilder.getDocument();
+		String result = "";
+		for(int i=0; i<temp.count()-1; i++){
+			result = result + temp.getAt(i).getVal();
+		}
+		
+		return result;
+
 	}
+	
 }

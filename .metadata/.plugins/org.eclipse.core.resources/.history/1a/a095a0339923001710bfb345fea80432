@@ -1,0 +1,16 @@
+
+public class DocumentCharacter extends TextComponent{
+	private String character;
+	
+	public DocumentCharacter(char c){
+		character = c;
+	}
+	
+	public void printValue(){
+		System.out.print(character);
+	}
+	
+	public String getVal(){
+		return character;
+	}
+}

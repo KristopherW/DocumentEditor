@@ -1,0 +1,12 @@
+
+public class DocumentRow extends TextComponent{
+	private List<Character> row = new ArrayListAdapter();
+	
+	public DocumentRow(char c){
+		row.append(c);
+	}
+	
+	public void printValue(){
+		System.out.print(row);
+	}
+}

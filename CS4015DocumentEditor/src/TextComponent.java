@@ -20,4 +20,8 @@ public class TextComponent {
 	public int numberOfChildren(){
 		return 0;
 	}
+	
+	public String getVal(){
+		return "";
+	}
 }

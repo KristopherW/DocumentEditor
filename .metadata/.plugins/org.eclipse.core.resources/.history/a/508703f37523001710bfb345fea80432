@@ -1,0 +1,24 @@
+
+public class Director {
+	private DocumentBuilder docBuilder = DocumentBuilder.getInstance();
+	
+	public void buildDocument(String s){
+		String textIn = s;
+		docBuilder.buildDoc();
+		
+		String[] rows = textIn.split(System.getProperty("line.separator"));
+		
+		for(String row : rows){
+			char[] chars = row.toCharArray();
+			for(int i=0; i<chars.length-1; i++){
+				docBuilder.buildRow(chars[i]);
+			}
+		}
+		
+		docBuilder.buildDoc();
+		
+		TextComponent temp = docBuilder.getDocument();
+		temp.
+	}
+	
+}

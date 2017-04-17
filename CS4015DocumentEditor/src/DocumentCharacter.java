@@ -9,4 +9,9 @@ public class DocumentCharacter extends TextComponent{
 	public void printValue(){
 		System.out.print(character);
 	}
+	
+	public String getVal(){
+		String s = "" + character;
+		return s;
+	}
 }

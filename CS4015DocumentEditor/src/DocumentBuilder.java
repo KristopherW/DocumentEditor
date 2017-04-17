@@ -11,21 +11,21 @@ public class DocumentBuilder {
 		return docBuilder;
 	}
 	
-	private TextComponent root = new TextComposite();
+	private List<TextComposite> rowList = new ArrayListAdapter();
 	
 	public void buildDoc(){
-		root.addChild(new DocumentRow(""));
+		rowList.append(new TextComposite());
 	}
 	
 	public void buildRow(char c){
 		DocumentCharacter character = FlyweightCharFactory.getFlyweightChar(c);
-		TextComponent temp = root.getChild(root.numberOfChildren()-1);
-		root.removeChild(temp);
+		TextComposite temp = rowList.last();
+		rowList.delete(temp);;
 		temp.addChild(character);
-		root.addChild(temp);
+		rowList.append(temp);
 	}
 	
-	public TextComponent getDocument(){
-		return root;
+	public List<TextComposite> getDocument(){
+		return rowList;
 	}
 }

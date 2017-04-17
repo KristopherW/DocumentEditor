@@ -1,0 +1,13 @@
+
+public class DocumentCharacter extends TextComponent{
+	private char character;
+	
+	public DocumentCharacter(char c){
+		character = c;
+	}
+	
+	@Override
+	public Character printValue(){
+		return character;
+	}
+}

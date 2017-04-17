@@ -1,9 +1,9 @@
 
 public class DocumentController {
-	private EditorGUI view;
+	private EditorView view;
 	private DocumentModel model;
 	
-	public DocumentController(EditorGUI view, DocumentModel model){
+	public DocumentController(EditorView view, DocumentModel model){
 		this.view = view;
 		this.model = model;
 	}
