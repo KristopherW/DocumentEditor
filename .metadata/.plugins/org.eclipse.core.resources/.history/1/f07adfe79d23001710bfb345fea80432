@@ -4,7 +4,6 @@ public class Director {
 	
 	public String buildDocument(String s){
 		String textIn = s;
-		docBuilder.nukeList();
 		docBuilder.buildDoc();
 		
 		String[] rows = textIn.split(System.getProperty("line.separator"));

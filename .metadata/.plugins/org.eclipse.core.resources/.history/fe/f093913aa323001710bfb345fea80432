@@ -1,0 +1,10 @@
+
+public class TextObserver extends Observer{
+	DocumentController controller = new DocumentController();
+	
+	@Override
+	public void update() {
+		controller.documentText(textArea.getText());
+	}
+
+}

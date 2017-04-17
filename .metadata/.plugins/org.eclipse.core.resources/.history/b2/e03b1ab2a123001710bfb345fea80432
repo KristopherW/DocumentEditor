@@ -21,8 +21,7 @@ public class EditorView extends JFrame implements ActionListener, DocumentListen
 	private String clipBoard;
 	private JToolBar toolBar;
 	private JFileChooser fileChooser;
-	private DocumentController controller = new DocumentController();
-	private TextObserver observer = new TextObserver();
+	private DocumentController controller = new DocumentController(this);
 	
 	public EditorView(){
 	    super("CS4015 Text Editor");
@@ -105,7 +104,6 @@ public class EditorView extends JFrame implements ActionListener, DocumentListen
 	    		FileReader fr;
 				try {
 					fr = new FileReader(file);
-					this.setTitle(file.getName());
 					BufferedReader reader = new BufferedReader(fr);
 					Director director = new Director();
 					String docText = "";

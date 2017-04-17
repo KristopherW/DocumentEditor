@@ -105,7 +105,6 @@ public class EditorView extends JFrame implements ActionListener, DocumentListen
 	    		FileReader fr;
 				try {
 					fr = new FileReader(file);
-					this.setTitle(file.getName());
 					BufferedReader reader = new BufferedReader(fr);
 					Director director = new Director();
 					String docText = "";

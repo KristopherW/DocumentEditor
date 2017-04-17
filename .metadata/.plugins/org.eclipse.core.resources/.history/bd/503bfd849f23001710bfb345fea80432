@@ -17,12 +17,10 @@ public class EditorView extends JFrame implements ActionListener, DocumentListen
 	private JMenuBar menuBar;
 	private JMenu fileMenu, editMenu;
 	private JScrollPane scrollPane;
-	private JMenuItem exitItem, cutItem, copyItem, pasteItem, saveItem, loadItem;
+	private JMenuItem exitItem, cutItem, copyItem, pasteItem, selectItem, saveItem, loadItem;
 	private String clipBoard;
 	private JToolBar toolBar;
 	private JFileChooser fileChooser;
-	private DocumentController controller = new DocumentController();
-	private TextObserver observer = new TextObserver();
 	
 	public EditorView(){
 	    super("CS4015 Text Editor");
@@ -44,6 +42,7 @@ public class EditorView extends JFrame implements ActionListener, DocumentListen
 	    cutItem = new JMenuItem("Cut");
 	    copyItem = new JMenuItem("Copy");
 	    pasteItem = new JMenuItem("Paste");
+	    selectItem = new JMenuItem("Select All");
 	    toolBar = new JToolBar();
 	    fileChooser = new JFileChooser();
 	
@@ -61,6 +60,7 @@ public class EditorView extends JFrame implements ActionListener, DocumentListen
 	    editMenu.add(cutItem);
 	    editMenu.add(copyItem);
 	    editMenu.add(pasteItem);        
+	    editMenu.add(selectItem);
 		
 	    pane.add(scrollPane,BorderLayout.CENTER);
 	    pane.add(toolBar,BorderLayout.SOUTH);
@@ -72,6 +72,7 @@ public class EditorView extends JFrame implements ActionListener, DocumentListen
 	    cutItem.addActionListener(this);
 	    copyItem.addActionListener(this);
 	    pasteItem.addActionListener(this);
+	    selectItem.addActionListener(this);
 	
 	    setVisible(true);
 	}
@@ -105,7 +106,6 @@ public class EditorView extends JFrame implements ActionListener, DocumentListen
 	    		FileReader fr;
 				try {
 					fr = new FileReader(file);
-					this.setTitle(file.getName());
 					BufferedReader reader = new BufferedReader(fr);
 					Director director = new Director();
 					String docText = "";
@@ -154,16 +154,24 @@ public class EditorView extends JFrame implements ActionListener, DocumentListen
 
 	@Override
 	public void changedUpdate(DocumentEvent e) {
-		controller.documentText(textArea.getText());
+		// TODO Auto-generated method stub
+		Director director = new Director();
+		String text = director.buildDocument(textArea.getText());
+		textArea.setText(text);
+
 	}
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		controller.documentText(textArea.getText());
+		Director director = new Director();
+		String text = director.buildDocument(textArea.getText());
+		textArea.setText(text);		
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
-		controller.documentText(textArea.getText());
+		Director director = new Director();
+		String text = director.buildDocument(textArea.getText());
+		textArea.setText(text);		
 	}
 }

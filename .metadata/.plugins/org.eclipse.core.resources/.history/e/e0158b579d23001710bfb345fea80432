@@ -28,8 +28,4 @@ public class DocumentBuilder {
 	public List<TextComposite> getDocument(){
 		return rowList;
 	}
-	
-	public void nukeList(){
-		rowList.deleteAll();
-	}
 }

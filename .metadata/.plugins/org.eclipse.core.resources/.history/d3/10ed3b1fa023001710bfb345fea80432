@@ -1,0 +1,14 @@
+
+public class DocumentController {
+	private EditorView view;
+	private Director director;
+	
+	public DocumentController(EditorView view){
+		this.view = view;
+	}
+	
+	public String documentText(String s){
+		director = new Director();
+		return director.buildDocument(s);
+	}
+}
